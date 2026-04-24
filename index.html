@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Spanish Quiz — April 24, 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Georgia', serif; background: #f5f0eb; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .shell { background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); max-width: 680px; width: 100%; overflow: hidden; }
+  .header { background: #c0392b; color: #fff; padding: 24px 28px 20px; }
+  .header h1 { font-size: 1.4em; font-weight: normal; letter-spacing: 0.02em; }
+  .header p { font-size: 0.9em; opacity: 0.85; margin-top: 4px; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.25); border-radius: 99px; height: 6px; margin-top: 14px; }
+  .progress-bar { background: #fff; height: 6px; border-radius: 99px; transition: width 0.4s ease; width: 0%; }
+  .topic-badge { display: inline-block; background: #fef3f2; color: #c0392b; border: 1px solid #f5c6c2; border-radius: 99px; font-size: 0.75em; padding: 3px 10px; margin-bottom: 10px; letter-spacing: 0.03em; text-transform: uppercase; }
+  .card { padding: 28px 28px 24px; }
+  .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .q-num { font-size: 0.82em; color: #999; }
+  .question { font-size: 1.13em; color: #1a1a1a; margin-bottom: 6px; line-height: 1.6; }
+  .question em { display: block; font-size: 0.85em; color: #666; font-style: italic; margin-top: 4px; }
+  .options { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .option-btn { background: #f8f6f3; border: 2px solid #e8e3dc; border-radius: 10px; padding: 12px 16px; text-align: left; font-size: 0.97em; font-family: inherit; cursor: pointer; transition: background 0.15s, border-color 0.15s, transform 0.1s; color: #222; line-height: 1.4; }
+  .option-btn:hover:not(:disabled) { background: #fef3f2; border-color: #c0392b; transform: translateX(3px); }
+  .option-btn .letter { font-weight: bold; color: #c0392b; margin-right: 8px; }
+  .option-btn.correct { background: #eafaf1; border-color: #27ae60; }
+  .option-btn.correct .letter { color: #27ae60; }
+  .option-btn.wrong { background: #fdf0ef; border-color: #e74c3c; }
+  .option-btn.wrong .letter { color: #e74c3c; }
+  .option-btn:disabled { cursor: default; transform: none; }
+  .feedback { margin-top: 18px; padding: 14px 16px; border-radius: 10px; font-size: 0.93em; line-height: 1.6; display: none; }
+  .feedback.correct-fb { background: #eafaf1; border-left: 4px solid #27ae60; color: #1d6a3a; display: block; }
+  .feedback.wrong-fb { background: #fdf0ef; border-left: 4px solid #e74c3c; color: #7b1a14; display: block; }
+  .feedback strong { display: block; margin-bottom: 4px; }
+  .nav { margin-top: 22px; display: flex; justify-content: flex-end; }
+  .next-btn { background: #c0392b; color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 0.95em; font-family: inherit; cursor: pointer; display: none; transition: background 0.15s; }
+  .next-btn:hover { background: #a93226; }
+  .results { padding: 36px 28px; text-align: center; display: none; }
+  .score-ring { width: 110px; height: 110px; border-radius: 50%; background: conic-gradient(#27ae60 var(--pct), #e8e3dc var(--pct)); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.6em; font-weight: bold; color: #1a1a1a; box-shadow: 0 0 0 8px #fff, 0 0 0 10px #e8e3dc; }
+  .results h2 { font-size: 1.4em; color: #1a1a1a; margin-bottom: 8px; }
+  .results p { color: #666; font-size: 0.95em; margin-bottom: 20px; }
+  .restart-btn { background: #c0392b; color: #fff; border: none; border-radius: 8px; padding: 11px 28px; font-size: 1em; font-family: inherit; cursor: pointer; }
+  .restart-btn:hover { background: #a93226; }
+  .breakdown { margin-top: 24px; text-align: left; border-top: 1px solid #ece8e3; padding-top: 18px; }
+  .breakdown h3 { font-size: 0.9em; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+  .bd-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #ece8e3; font-size: 0.9em; }
+  .bd-row:last-child { border-bottom: none; }
+  .bd-score { font-weight: bold; color: #c0392b; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="header">
+    <h1>&#127466;&#127480; Spanish Grammar Quiz</h1>
+    <p>April 24, 2026 &nbsp;&middot;&nbsp; 20 questions &nbsp;&middot;&nbsp; Intermediate level</p>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+  </div>
+  <div class="card" id="quizCard">
+    <div class="q-meta">
+      <span class="topic-badge" id="topicBadge"></span>
+      <span class="q-num" id="qNum"></span>
+    </div>
+    <div class="question" id="questionText"></div>
+    <div class="options" id="optionsContainer"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="nav"><button class="next-btn" id="nextBtn">Next &rarr;</button></div>
+  </div>
+  <div class="results" id="resultsScreen">
+    <div class="score-ring" id="scoreRing"></div>
+    <h2 id="resultsHeading"></h2>
+    <p id="resultsSubtext"></p>
+    <button class="restart-btn" onclick="restart()">Restart Quiz</button>
+    <div class="breakdown" id="breakdown"></div>
+  </div>
+</div>
+<script>
+const questions = [
+  {
+    "topic": "SER vs ESTAR",
+    "q": "El concierto ___ en el parque central esta noche.",
+    "en": "The concert is in the central park tonight.",
+    "options": [
+      "es",
+      "está",
+      "será",
+      "estará"
+    ],
+    "correct": 0,
+    "explanation": "Events use SER to express where and when they take place, even though location normally uses ESTAR. ESTAR is reserved for the physical location of people and objects, not scheduled events."
+  },
+  {
+    "topic": "SER vs ESTAR",
+    "q": "Después de correr diez kilómetros, Miguel ___ completamente listo para dormir.",
+    "en": "After running ten kilometers, Miguel is completely ready to fall asleep.",
+    "options": [
+      "es",
+      "está",
+      "fue",
+      "estuvo"
+    ],
+    "correct": 1,
+    "explanation": "ESTAR + listo means 'ready' (a temporary state), while SER + listo means 'clever/smart' (a permanent characteristic). Context here describes a condition resulting from effort, so ESTAR is correct."
+  },
+  {
+    "topic": "SER vs ESTAR",
+    "q": "Este pastel de chocolate ___ riquísimo — ¿cuál es la receta?",
+    "en": "This chocolate cake is absolutely delicious — what's the recipe?",
+    "options": [
+      "es",
+      "está",
+      "sea",
+      "esté"
+    ],
+    "correct": 1,
+    "explanation": "ESTAR + rico means 'tastes delicious' and refers to the experienced quality of food right now. SER + rico means 'wealthy' when applied to people, or a more inherent quality. For food taste, ESTAR is the natural choice."
+  },
+  {
+    "topic": "SER vs ESTAR",
+    "q": "Mi abuela ___ viuda desde que murió mi abuelo hace veinte años.",
+    "en": "My grandmother has been a widow since my grandfather died twenty years ago.",
+    "options": [
+      "está",
+      "es",
+      "ha sido",
+      "ha estado"
+    ],
+    "correct": 0,
+    "explanation": "Although widowhood may seem permanent, Spanish uses ESTAR for marital and civil status changes that resulted from an event (death, divorce). This is a classic 'change-of-state' exception where ESTAR, not SER, is used."
+  },
+  {
+    "topic": "Pretérito Indefinido vs Imperfecto",
+    "q": "Cuando era niño, ___ al fútbol todos los sábados con mis amigos del barrio.",
+    "en": "When I was a child, I used to play soccer every Saturday with my neighborhood friends.",
+    "options": [
+      "jugué",
+      "jugaba",
+      "he jugado",
+      "jugaré"
+    ],
+    "correct": 1,
+    "explanation": "The Imperfecto is used for habitual or repeated actions in the past — things that 'used to' happen regularly. The clue here is 'todos los sábados,' which signals a routine rather than a single completed event."
+  },
+  {
+    "topic": "Pretérito Indefinido vs Imperfecto",
+    "q": "Estábamos cenando tranquilamente cuando de repente ___ la alarma de incendios.",
+    "en": "We were having dinner peacefully when suddenly the fire alarm went off.",
+    "options": [
+      "sonaba",
+      "sonó",
+      "había sonado",
+      "sonaría"
+    ],
+    "correct": 1,
+    "explanation": "When a sudden event interrupts an ongoing background action, the interrupting event uses Pretérito Indefinido and the background action uses Imperfecto. 'Estábamos cenando' is the background; the alarm going off is the sudden event."
+  },
+  {
+    "topic": "Pretérito Indefinido vs Imperfecto",
+    "q": "El mercado ___ muy animado: había músicos, vendedores y turistas por todas partes.",
+    "en": "The market was very lively: there were musicians, vendors, and tourists everywhere.",
+    "options": [
+      "fue",
+      "era",
+      "estuvo",
+      "estaba"
+    ],
+    "correct": 3,
+    "explanation": "The Imperfecto (here ESTAR in imperfecto: estaba) is used to describe scenes, atmospheres, and states that formed the background of a past narrative. The sentence is painting a picture of how things were, not reporting a completed action."
+  },
+  {
+    "topic": "Usos de QUE",
+    "q": "No entiendo ___ me estás intentando decir con eso.",
+    "en": "I don't understand what you are trying to tell me with that.",
+    "options": [
+      "que",
+      "lo que",
+      "qué",
+      "el que"
+    ],
+    "correct": 1,
+    "explanation": "'Lo que' functions as a noun clause meaning 'what / the thing that' and is used when 'what' is not a question word but the subject or object of an embedded clause. 'Que' alone cannot introduce this type of noun clause."
+  },
+  {
+    "topic": "Usos de QUE",
+    "q": "___ sorpresa tan agradable verte aquí después de tanto tiempo!",
+    "en": "What a pleasant surprise to see you here after so long!",
+    "options": [
+      "Lo que",
+      "Qué",
+      "Que",
+      "Cuál"
+    ],
+    "correct": 1,
+    "explanation": "'Qué' with an accent mark is used in exclamatory sentences to express surprise or emotion (¡Qué + noun/adjective!). It is different from the relative pronoun 'que' (no accent) which links clauses."
+  },
+  {
+    "topic": "Reflexive verbs",
+    "q": "Últimamente ___ muchísimo con los plazos del trabajo — no puedo dormir bien.",
+    "en": "Lately I stress out a lot because of work deadlines — I can't sleep well.",
+    "options": [
+      "me estreso",
+      "me estresas",
+      "me estresa",
+      "me estresan"
+    ],
+    "correct": 0,
+    "explanation": "In the 'yo y yo' reflexive pattern, the subject and the experiencer are the same person — the person causes their own stress. 'Me estreso' (yo) means 'I stress myself out,' an internal self-directed action."
+  },
+  {
+    "topic": "Reflexive verbs",
+    "q": "Cuando llegas tarde sin avisar, ___ mucho — es una falta de respeto.",
+    "en": "When you arrive late without warning, you worry me a lot — it's disrespectful.",
+    "options": [
+      "me preocupo",
+      "me preocupas",
+      "me preocupa",
+      "me preocupáis"
+    ],
+    "correct": 1,
+    "explanation": "In the 'yo y tú' pattern, a second person (tú) causes a feeling or reaction in the speaker (yo). The verb agrees with the subject 'tú' → 'preocupas,' while 'me' marks the speaker as the one affected."
+  },
+  {
+    "topic": "Condicional vs Futuro Simple",
+    "q": "Si tuviera más tiempo libre, ___ un curso de fotografía.",
+    "en": "If I had more free time, I would take a photography course.",
+    "options": [
+      "haré",
+      "voy a hacer",
+      "haría",
+      "hago"
+    ],
+    "correct": 2,
+    "explanation": "The Condicional Simple is used in the result clause of a hypothetical (si + imperfecto subjuntivo) sentence, expressing what 'would' happen under an unlikely or imagined condition. Futuro Simple would imply a real future plan, not a hypothesis."
+  },
+  {
+    "topic": "Condicional vs Futuro Simple",
+    "q": "He mirado el cielo y ___ mañana — mejor lleva un paraguas.",
+    "en": "I've looked at the sky and it will rain tomorrow — you'd better bring an umbrella.",
+    "options": [
+      "llovaría",
+      "va a llover",
+      "llovería",
+      "llueve"
+    ],
+    "correct": 1,
+    "explanation": "'Voy a + infinitivo' (ir a + infinitivo) expresses a near future event based on present evidence or a firm intention. Since the speaker bases the prediction on direct observation (the sky), 'va a llover' is more natural than the more distant 'lloverá'."
+  },
+  {
+    "topic": "Condicional vs Futuro Simple",
+    "q": "El director dijo que la reunión ___ el próximo lunes a las nueve.",
+    "en": "The director said that the meeting would be next Monday at nine.",
+    "options": [
+      "será",
+      "sería",
+      "sea",
+      "es"
+    ],
+    "correct": 1,
+    "explanation": "When reporting future plans from the perspective of a past moment (indirect speech after a past verb), Spanish uses the Condicional Simple — it functions as the 'future in the past.' 'Sería' here translates as 'would be.'"
+  },
+  {
+    "topic": "Subjuntivo Simple",
+    "q": "Es fundamental que los empleados ___ el manual de seguridad antes de empezar.",
+    "en": "It is essential that employees read the safety manual before starting.",
+    "options": [
+      "leen",
+      "lean",
+      "leerán",
+      "leyeron"
+    ],
+    "correct": 1,
+    "explanation": "Impersonal expressions of necessity or importance (es fundamental que, es importante que, es necesario que) trigger the Subjuntivo in the subordinate clause. The subjunctive here expresses obligation or expectation, not a factual statement."
+  },
+  {
+    "topic": "Subjuntivo Simple",
+    "q": "Llámame en cuanto ___ noticias del hospital, ¿de acuerdo?",
+    "en": "Call me as soon as you get news from the hospital, okay?",
+    "options": [
+      "tengas",
+      "tienes",
+      "tendrás",
+      "tuvieras"
+    ],
+    "correct": 0,
+    "explanation": "Temporal conjunctions like 'en cuanto,' 'cuando,' and 'hasta que' require Subjuntivo when they refer to a future action that has not yet happened. If the action were habitual or already completed, the indicative would be used instead."
+  },
+  {
+    "topic": "Subjuntivo Simple",
+    "q": "Busco a alguien que ___ cocinar comida vegana para el evento.",
+    "en": "I'm looking for someone who can cook vegan food for the event.",
+    "options": [
+      "sabe",
+      "sepa",
+      "supo",
+      "sabría"
+    ],
+    "correct": 1,
+    "explanation": "When the antecedent (the noun being described) is unknown, hypothetical, or non-specific, the relative clause uses Subjuntivo. Since the speaker hasn't found this person yet, 'someone who can' is hypothetical → 'sepa' (subjuntivo)."
+  },
+  {
+    "topic": "Imperativo",
+    "q": "Por favor, no ___ el archivo sin hacer una copia de seguridad primero.",
+    "en": "Please, don't delete the file without making a backup first.",
+    "options": [
+      "borras",
+      "borres",
+      "borra",
+      "borrarás"
+    ],
+    "correct": 1,
+    "explanation": "Negative tú commands use the present Subjuntivo form (no + subjuntivo). The affirmative tú command 'borra' cannot be used after 'no' — this is one of the key asymmetries between affirmative and negative imperatives in Spanish."
+  },
+  {
+    "topic": "Imperativo",
+    "q": "Si tienen preguntas al final de la presentación, ___ sin miedo.",
+    "en": "If you (all) have questions at the end of the presentation, ask them without hesitation.",
+    "options": [
+      "preguntad",
+      "pregunten",
+      "preguntan",
+      "pregunten"
+    ],
+    "correct": 1,
+    "explanation": "For ustedes commands (used in Latin America and formal contexts in Spain), the imperative form is identical to the third-person plural present Subjuntivo. 'Pregunten' is the ustedes affirmative command here."
+  },
+  {
+    "topic": "Futuro Compuesto",
+    "q": "No contesta al teléfono. ___ salido ya a hacer los recados.",
+    "en": "She isn't answering the phone. She must have already gone out to run errands.",
+    "options": [
+      "Ha",
+      "Habrá",
+      "Había",
+      "Haya"
+    ],
+    "correct": 1,
+    "explanation": "The Futuro Compuesto (habrá + participio) is used to express probability or logical deduction about something that likely happened in the recent past. It translates as 'must have' or 'probably has' when the speaker is speculating about a past event."
+  }
+];
+const letters = ["A","B","C","D"];
+let current = 0, score = 0, topicScores = {}, answered = false;
+function init() {
+  current = 0; score = 0; topicScores = {}; answered = false;
+  questions.forEach(q => { topicScores[q.topic] = topicScores[q.topic] || {right:0,total:0}; });
+  document.getElementById("resultsScreen").style.display = "none";
+  document.getElementById("quizCard").style.display = "";
+  showQuestion();
+}
+function showQuestion() {
+  answered = false;
+  const q = questions[current];
+  document.getElementById("topicBadge").textContent = q.topic;
+  document.getElementById("qNum").textContent = `Question ${current+1} of ${questions.length}`;
+  document.getElementById("progressBar").style.width = `${(current/questions.length)*100}%`;
+  document.getElementById("questionText").innerHTML = q.q + `<em>${q.en}</em>`;
+  const container = document.getElementById("optionsContainer");
+  container.innerHTML = "";
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    btn.innerHTML = `<span class="letter">${letters[i]})</span>${opt}`;
+    btn.addEventListener("click", () => selectAnswer(i));
+    container.appendChild(btn);
+  });
+  document.getElementById("feedback").className = "feedback";
+  document.getElementById("feedback").innerHTML = "";
+  document.getElementById("nextBtn").style.display = "none";
+}
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  const q = questions[current];
+  const buttons = document.querySelectorAll(".option-btn");
+  buttons.forEach(b => b.disabled = true);
+  topicScores[q.topic].total++;
+  if (idx === q.correct) {
+    buttons[idx].classList.add("correct"); score++; topicScores[q.topic].right++;
+    showFeedback(true, q.explanation);
+  } else {
+    buttons[idx].classList.add("wrong"); buttons[q.correct].classList.add("correct");
+    showFeedback(false, q.explanation);
+  }
+  document.getElementById("nextBtn").style.display = "block";
+}
+function showFeedback(isCorrect, explanation) {
+  const fb = document.getElementById("feedback");
+  fb.className = "feedback " + (isCorrect ? "correct-fb" : "wrong-fb");
+  fb.innerHTML = (isCorrect ? "&#10003; Correct! &nbsp;" : "&#10007; Not quite. &nbsp;") + explanation;
+}
+document.getElementById("nextBtn").addEventListener("click", () => {
+  current++;
+  if (current >= questions.length) showResults(); else showQuestion();
+});
+function showResults() {
+  document.getElementById("quizCard").style.display = "none";
+  document.getElementById("progressBar").style.width = "100%";
+  document.getElementById("resultsScreen").style.display = "block";
+  const pct = Math.round((score/questions.length)*100);
+  const ring = document.getElementById("scoreRing");
+  ring.style.setProperty("--pct", `${pct}%`);
+  ring.textContent = `${score}/${questions.length}`;
+  const h = document.getElementById("resultsHeading"), p = document.getElementById("resultsSubtext");
+  if (pct >= 90)      { h.textContent="Excellent work!";       p.textContent="Outstanding — you have a strong command of these structures."; }
+  else if (pct >= 70) { h.textContent="Good job!";             p.textContent="Solid performance. Review the topics you missed and try again."; }
+  else if (pct >= 50) { h.textContent="Keep practicing!";      p.textContent="You're on the right track — focus on the sections below."; }
+  else                { h.textContent="More practice needed."; p.textContent="Don't worry — review the explanations and try again."; }
+  const bd = document.getElementById("breakdown");
+  bd.innerHTML = "<h3>Score by Topic</h3>";
+  Object.entries(topicScores).forEach(([topic, s]) => {
+    const row = document.createElement("div");
+    row.className = "bd-row";
+    row.innerHTML = `<span>${topic}</span><span class="bd-score">${s.right}/${s.total}</span>`;
+    bd.appendChild(row);
+  });
+}
+function restart() { init(); }
+init();
+</script>
+</body>
+</html>
