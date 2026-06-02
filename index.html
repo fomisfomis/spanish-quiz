@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Spanish Quiz — June 01, 2026</title>
+<title>Spanish Quiz — June 02, 2026</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Georgia', serif; background: #f5f0eb; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
@@ -52,7 +52,7 @@
 <div class="shell">
   <div class="header">
     <h1>&#127466;&#127480; Spanish Grammar Quiz</h1>
-    <p>June 01, 2026 &nbsp;&middot;&nbsp; 20 questions &nbsp;&middot;&nbsp; Intermediate level</p>
+    <p>June 02, 2026 &nbsp;&middot;&nbsp; 20 questions &nbsp;&middot;&nbsp; Intermediate level</p>
     <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
   </div>
   <div class="card" id="quizCard">
@@ -77,8 +77,8 @@
 const questions = [
   {
     "topic": "SER vs ESTAR",
-    "q": "El concierto ___ en el parque central esta noche.",
-    "en": "The concert is in the central park tonight.",
+    "q": "La conferencia ___ en el auditorio principal esta tarde.",
+    "en": "The conference is in the main auditorium this afternoon.",
     "options": [
       "es",
       "está",
@@ -86,90 +86,90 @@ const questions = [
       "estará"
     ],
     "correct": 0,
-    "explanation": "Use SER to express the location of events, even though location normally uses ESTAR. Events (concerts, parties, meetings) are considered definitions of where something takes place, not descriptions of a thing's position."
+    "explanation": "Events (like conferences, parties, meetings) use SER to express location, not ESTAR. ESTAR indicates the location of physical objects and people, while SER is used for the location of scheduled events."
   },
   {
     "topic": "SER vs ESTAR",
-    "q": "No puedo creer que tu abuela todavía ___ tan viva — tiene 95 años y baila todos los días.",
-    "en": "I can't believe your grandmother is still so lively — she's 95 and dances every day.",
+    "q": "No toques esa salsa — ___ muy picante y te va a arder la boca.",
+    "en": "Don't touch that sauce — it's very spicy and it's going to burn your mouth.",
     "options": [
-      "es",
       "está",
+      "es",
       "sea",
       "esté"
     ],
     "correct": 1,
-    "explanation": "VIVO/A changes meaning depending on the verb: SER vivo means 'clever/sharp', while ESTAR vivo means 'alive or lively'. Here the context of energy and vitality points to ESTAR."
+    "explanation": "SER is used with adjectives that describe inherent or defining characteristics of something. The spiciness here is a permanent, defining quality of the sauce, not a temporary state, so SER is correct."
   },
   {
     "topic": "SER vs ESTAR",
-    "q": "Este postre ___ riquísimo — ¿le pusiste chocolate belga?",
-    "en": "This dessert is incredibly delicious — did you put Belgian chocolate in it?",
+    "q": "¡Qué raro! Normalmente Marcos ___ muy animado, pero hoy parece cansado.",
+    "en": "How strange! Normally Marcos is very lively, but today he seems tired.",
     "options": [
-      "es",
       "está",
-      "fue",
-      "estuvo"
+      "es",
+      "estuviera",
+      "fuera"
     ],
     "correct": 1,
-    "explanation": "RICO with ESTAR means 'tastes delicious' (a sensory, temporary experience), while SER rico means 'wealthy'. When reacting to how food tastes in the moment, Spanish speakers use ESTAR."
+    "explanation": "SER is used here because 'animado' describes Marcos's habitual, characteristic personality. The contrast with 'hoy' (today) highlights that his usual nature (SER) differs from his current temporary state (which would use ESTAR)."
   },
   {
     "topic": "SER vs ESTAR",
-    "q": "Mi vecino ___ muy aburrido en las reuniones de trabajo — siempre habla de lo mismo.",
-    "en": "My neighbor is very boring at work meetings — he always talks about the same thing.",
+    "q": "Prueba el arroz — ___ riquísimo desde que le añadí azafrán.",
+    "en": "Try the rice — it tastes incredible since I added saffron.",
     "options": [
       "es",
       "está",
-      "sería",
-      "estaría"
+      "sea",
+      "estuviera"
+    ],
+    "correct": 1,
+    "explanation": "'Rico' is one of the adjectives that changes meaning with SER vs ESTAR. With SER, 'rico' means wealthy or inherently tasty as a quality; with ESTAR, it means 'it tastes delicious right now,' describing a sensory experience in the moment."
+  },
+  {
+    "topic": "Pretérito Indefinido vs Imperfecto",
+    "q": "Cuando ___ pequeña, mi abuela me ___ cuentos todas las noches.",
+    "en": "When I was little, my grandmother used to tell me stories every night.",
+    "options": [
+      "era / contaba",
+      "fui / conté",
+      "era / contó",
+      "fui / contaba"
     ],
     "correct": 0,
-    "explanation": "SER aburrido means 'to be a boring person' (a characteristic trait), while ESTAR aburrido means 'to feel bored' (a temporary emotional state). The context here describes a habitual personality trait, so SER is correct."
+    "explanation": "Both verbs describe habitual, repeated past situations without a defined endpoint, so Imperfecto is correct for both. 'Cuando era pequeña' sets a background age, and 'contaba' expresses a recurring action — both classic Imperfecto uses."
   },
   {
     "topic": "Pretérito Indefinido vs Imperfecto",
-    "q": "Cuando era niño, todos los veranos mi familia ___ a la misma playa en Galicia.",
-    "en": "When I was a child, every summer my family went to the same beach in Galicia.",
+    "q": "Yo ___ un podcast cuando de repente ___ la alarma de incendios.",
+    "en": "I was listening to a podcast when suddenly the fire alarm went off.",
     "options": [
-      "fue",
-      "iba",
-      "ha ido",
-      "había ido"
+      "escuchaba / sonó",
+      "escuché / sonaba",
+      "escuchaba / sonaba",
+      "escuché / sonó"
     ],
-    "correct": 1,
-    "explanation": "The Imperfecto (iba) is used for habitual or repeated actions in the past, especially when cues like 'todos los veranos' (every summer) signal a routine. The Indefinido would imply a single completed trip."
+    "correct": 0,
+    "explanation": "The Imperfecto ('escuchaba') describes the ongoing background action that was already in progress, while the Indefinido ('sonó') marks the sudden completed event that interrupted it. This is the classic interrupted-action structure."
   },
   {
     "topic": "Pretérito Indefinido vs Imperfecto",
-    "q": "Yo ___ tranquilamente cuando de repente sonó el teléfono.",
-    "en": "I was reading calmly when suddenly the phone rang.",
+    "q": "El año pasado, mi empresa ___ un contrato muy importante con una multinacional.",
+    "en": "Last year, my company signed a very important contract with a multinational.",
     "options": [
-      "leí",
-      "leía",
-      "había leído",
-      "he leído"
+      "firmaba",
+      "firmó",
+      "había firmado",
+      "firmase"
     ],
     "correct": 1,
-    "explanation": "In interrupted-action constructions, the ongoing background action uses the Imperfecto (leía), while the interrupting event uses the Indefinido (sonó). The phrase 'de repente' signals the sudden interrupting action."
-  },
-  {
-    "topic": "Pretérito Indefinido vs Imperfecto",
-    "q": "La reunión ___ a las tres y duró dos horas exactas.",
-    "en": "The meeting started at three and lasted exactly two hours.",
-    "options": [
-      "empezaba",
-      "empezó",
-      "ha empezado",
-      "empieza"
-    ],
-    "correct": 1,
-    "explanation": "The Indefinido (empezó) is used for completed, bounded events with a clear start and end in the past. When the duration is specified and the action is presented as a finished whole, Indefinido is required."
+    "explanation": "The time marker 'el año pasado' and the context of a specific, completed event (signing a contract) call for the Indefinido. The Imperfecto would imply repeated or habitual signing, which doesn't make sense here."
   },
   {
     "topic": "Usos de QUE",
-    "q": "No entiendo ___ me quieres decir con eso.",
-    "en": "I don't understand what you're trying to tell me with that.",
+    "q": "No entiendo ___ me estás intentando decir con ese mensaje.",
+    "en": "I don't understand what you're trying to tell me with that message.",
     "options": [
       "que",
       "lo que",
@@ -177,163 +177,163 @@ const questions = [
       "el que"
     ],
     "correct": 1,
-    "explanation": "LO QUE functions as a nominalizer meaning 'that which' or 'what', and is used when referring to an idea or thing that has not been previously mentioned. QUE alone would be a simple connector, not a noun clause equivalent."
+    "explanation": "'Lo que' functions as a nominalised relative pronoun meaning 'that which' or 'what,' and is used when 'what' refers to an unspecified thing or idea — not a direct question. 'Qué' would be used in a direct or indirect question, but here 'lo que' connects the verb to its object."
   },
   {
     "topic": "Usos de QUE",
-    "q": "¿Con ___ empresa trabajas ahora? ¿Sigues en el sector tecnológico?",
-    "en": "Which company do you work for now? Are you still in the tech sector?",
+    "q": "Para ___ sirve este botón en la aplicación?",
+    "en": "What is this button in the app for?",
     "options": [
       "lo que",
       "que",
       "qué",
-      "quien"
+      "el que"
     ],
     "correct": 2,
-    "explanation": "QUÉ (with accent) is used as an interrogative or exclamatory determiner before nouns in direct and indirect questions. Without the accent, QUE is a relative pronoun or conjunction, not suitable for questions."
+    "explanation": "'Qué' with an accent mark is used in direct and indirect questions to ask for information. After the preposition 'para,' the interrogative 'qué' is required here. 'Que' without accent is a relative conjunction or subordinator, not an interrogative."
   },
   {
     "topic": "Reflexive verbs",
-    "q": "Últimamente ___ muchísimo con los plazos de entrega en el trabajo.",
-    "en": "Lately I stress out a lot because of delivery deadlines at work.",
+    "q": "Últimamente ___ mucho cuando tengo reuniones largas en el trabajo.",
+    "en": "Lately I stress out a lot when I have long meetings at work.",
     "options": [
-      "me estresas",
-      "me estresa",
+      "me estresan",
+      "te estreso",
       "me estreso",
-      "nos estresamos"
+      "se estresa"
     ],
     "correct": 2,
-    "explanation": "When the subject causes their own emotional reaction (Yo y yo pattern), the reflexive verb agrees with the first-person subject: ME ESTRESO (yo). ME ESTRESA would require an external third-person subject causing the stress."
+    "explanation": "This is the 'yo y yo' pattern: the subject (yo) and the person experiencing the effect are the same, so the reflexive 'me estreso' is correct. The verb describes an internal reaction the speaker causes upon themselves."
   },
   {
     "topic": "Reflexive verbs",
-    "q": "Cuando llegas tarde sin avisar, ___ mucho.",
-    "en": "When you arrive late without warning, you worry me a lot.",
+    "q": "Lo siento, sé que a veces ___ con mis comentarios sin querer.",
+    "en": "I'm sorry, I know that sometimes I annoy you with my comments without meaning to.",
     "options": [
-      "me preocupas",
-      "me preocupo",
-      "me preocupa",
-      "te preocupas"
-    ],
-    "correct": 0,
-    "explanation": "In the 'Yo y tú' pattern, a second-person subject (tú) causes an emotional reaction in the speaker (yo). The verb agrees with the TÚ subject (preocupas), and ME marks that the speaker is the one affected."
-  },
-  {
-    "topic": "Condicional vs Futuro Simple",
-    "q": "Si tuviera más tiempo libre, ___ un curso de fotografía.",
-    "en": "If I had more free time, I would take a photography course.",
-    "options": [
-      "tomaré",
-      "tome",
-      "tomaría",
-      "voy a tomar"
+      "me aburro",
+      "te aburres",
+      "te aburro",
+      "se aburre"
     ],
     "correct": 2,
-    "explanation": "In hypothetical or contrary-to-fact conditional sentences with SI + Imperfecto de Subjuntivo, the main clause requires the Condicional Simple (tomaría). The Futuro Simple is used for real future possibilities, not hypotheticals."
+    "explanation": "This is the 'yo y tú' pattern: the subject (yo) causes an effect on another person (tú). 'Te aburro' means 'I bore/annoy you' — the subject performs the action and the object pronoun 'te' marks the person affected."
   },
   {
     "topic": "Condicional vs Futuro Simple",
-    "q": "Según el pronóstico, mañana ___ mucho calor en toda la región.",
-    "en": "According to the forecast, tomorrow it will be very hot throughout the region.",
+    "q": "Si pudiera elegir cualquier destino, ___ directamente a Japón en primavera.",
+    "en": "If I could choose any destination, I would go straight to Japan in spring.",
     "options": [
-      "haría",
-      "habrá",
-      "vaya a hacer",
-      "haga"
-    ],
-    "correct": 1,
-    "explanation": "FUTURO SIMPLE (habrá) is used for factual predictions about the future, especially based on evidence or forecasts. The Condicional (haría) would be used in hypothetical contexts or reported speech from the past."
-  },
-  {
-    "topic": "Condicional vs Futuro Simple",
-    "q": "Esta tarde ___ al gimnasio después del trabajo — ya lo tengo todo preparado.",
-    "en": "This afternoon I'm going to go to the gym after work — I've already got everything ready.",
-    "options": [
+      "iría",
       "iré",
       "voy a ir",
-      "fuera",
-      "iría"
-    ],
-    "correct": 1,
-    "explanation": "IR A + INFINITIVO is preferred for near-future plans that are already decided or in motion, especially when context shows preparation or intention. The Futuro Simple (iré) is more appropriate for distant or less certain future events."
-  },
-  {
-    "topic": "Subjuntivo Simple",
-    "q": "Es importante que los empleados ___ puntualmente a todas las reuniones.",
-    "en": "It is important that employees arrive punctually to all meetings.",
-    "options": [
-      "llegan",
-      "lleguen",
-      "llegarán",
-      "llegan a"
-    ],
-    "correct": 1,
-    "explanation": "Impersonal expressions of value or necessity (es importante que, es necesario que) trigger the Subjuntivo in the subordinate clause. The Indicativo (llegan) would be used to state facts, not to express importance or obligation."
-  },
-  {
-    "topic": "Subjuntivo Simple",
-    "q": "Te llamaré en cuanto ___ los resultados del análisis.",
-    "en": "I will call you as soon as the test results arrive.",
-    "options": [
-      "lleguen",
-      "llegan",
-      "llegarán",
-      "llegaron"
+      "fuera"
     ],
     "correct": 0,
-    "explanation": "Temporal conjunctions like EN CUANTO, CUANDO, and TAN PRONTO COMO require the Subjuntivo when referring to future events. Although it feels like a fact, the event hasn't happened yet, so Subjuntivo marks it as anticipated, not real."
+    "explanation": "The Condicional is used in the result clause of hypothetical (si + Imperfecto de Subjuntivo) sentences to express what would happen. 'Futuro Simple' or 'voy a ir' cannot be used in this type of contrary-to-fact conditional structure."
+  },
+  {
+    "topic": "Condicional vs Futuro Simple",
+    "q": "Según el pronóstico, ___ fuertes lluvias este fin de semana en toda la región.",
+    "en": "According to the forecast, there will be heavy rain this weekend throughout the region.",
+    "options": [
+      "habría",
+      "habrá",
+      "vaya a haber",
+      "haya"
+    ],
+    "correct": 1,
+    "explanation": "The Futuro Simple expresses a factual prediction or forecast about the future. The Condicional ('habría') would imply a hypothetical or reported speech context, not a straightforward meteorological prediction."
+  },
+  {
+    "topic": "Condicional vs Futuro Simple",
+    "q": "Esta noche no salgo; ___ a terminar el informe antes de dormir.",
+    "en": "I'm not going out tonight; I'm going to finish the report before sleeping.",
+    "options": [
+      "terminaré",
+      "voy a terminar",
+      "terminaría",
+      "termine"
+    ],
+    "correct": 1,
+    "explanation": "'Voy a + infinitivo' expresses a near-future intention that has already been decided or planned, especially when the decision is made in the present moment. 'Futuro Simple' tends to express more distant or less personal predictions rather than immediate personal intentions."
   },
   {
     "topic": "Subjuntivo Simple",
-    "q": "Busco un apartamento que ___ cerca del metro y que tenga terraza.",
-    "en": "I'm looking for an apartment that is near the metro and has a terrace.",
+    "q": "Mi jefe quiere que ___ el informe antes del mediodía.",
+    "en": "My boss wants me to submit the report before noon.",
     "options": [
-      "está",
-      "esté",
-      "estará",
-      "estuviera"
+      "entrego",
+      "entregue",
+      "entregaré",
+      "entregar"
     ],
     "correct": 1,
-    "explanation": "When the antecedent (the thing being sought) is indefinite or hypothetical — meaning it may not exist yet — the relative clause requires the Subjuntivo. If you already had a specific apartment in mind, you would use the Indicativo."
+    "explanation": "After verbs of wanting or wishing ('querer que'), the Subjuntivo is required in the subordinate clause when the subject changes. 'Querer que + subjuntivo' is a fundamental trigger structure in Spanish."
+  },
+  {
+    "topic": "Subjuntivo Simple",
+    "q": "Llámame en cuanto ___ noticias del hospital.",
+    "en": "Call me as soon as you get news from the hospital.",
+    "options": [
+      "tienes",
+      "tengas",
+      "tendrás",
+      "tuvieras"
+    ],
+    "correct": 1,
+    "explanation": "Temporal conjunctions like 'en cuanto,' 'cuando,' and 'hasta que' require the Subjuntivo when referring to future events that haven't happened yet. If the sentence referred to a habitual past action, the Indicative would be used instead."
+  },
+  {
+    "topic": "Subjuntivo Simple",
+    "q": "Es fundamental que todos los participantes ___ el formulario antes de entrar.",
+    "en": "It is essential that all participants sign the form before entering.",
+    "options": [
+      "firman",
+      "firmaron",
+      "firmen",
+      "firmarán"
+    ],
+    "correct": 2,
+    "explanation": "Impersonal expressions of necessity or importance ('es fundamental que,' 'es necesario que,' 'es importante que') always trigger the Subjuntivo in the dependent clause, because they express a subjective evaluation rather than a factual statement."
   },
   {
     "topic": "Imperativo",
-    "q": "No ___ el informe todavía — espera a que lleguen todos los datos.",
-    "en": "Don't send the report yet — wait until all the data arrives.",
+    "q": "Por favor, no ___ el móvil durante la reunión; es muy molesto.",
+    "en": "Please don't use your phone during the meeting; it's very annoying.",
     "options": [
-      "envías",
-      "envíes",
-      "envía",
-      "enviarás"
+      "uses",
+      "usas",
+      "usa",
+      "usés"
     ],
-    "correct": 1,
-    "explanation": "Negative imperatives in Spanish always use the Subjuntivo form, not the affirmative imperative. For TÚ commands, the affirmative is envía, but the negative is NO ENVÍES (Subjuntivo), following the pattern of no + Subjuntivo."
+    "correct": 0,
+    "explanation": "Negative tú commands use the present Subjuntivo form: 'no uses.' The affirmative tú command would be 'usa,' but for negation you must switch to the Subjunctive. This applies to all regular and irregular verbs in negative imperatives."
   },
   {
     "topic": "Imperativo",
-    "q": "Señores pasajeros, ___ sus cinturones de seguridad antes del despegue.",
-    "en": "Ladies and gentlemen, fasten your seatbelts before takeoff.",
+    "q": "Si quieren más información, ___ directamente al departamento de recursos humanos.",
+    "en": "If you (all) want more information, write directly to the human resources department.",
     "options": [
-      "abrochen",
-      "abrocha",
-      "abrocháis",
-      "abrochan"
+      "escriban",
+      "escribid",
+      "escribe",
+      "escribas"
     ],
     "correct": 0,
-    "explanation": "USTEDES commands use the third-person plural Subjuntivo form (abrochen). In Latin America and formal contexts in Spain, USTEDES is used instead of VOSOTROS for group commands, and the Subjuntivo form applies to both affirmative and negative."
+    "explanation": "'Ustedes' commands (used in Latin America and as the formal plural in Spain) use the third-person plural Subjuntivo form: 'escriban.' 'Escribid' is the 'vosotros' affirmative imperative, which is a different register and region."
   },
   {
     "topic": "Futuro Compuesto",
-    "q": "No contesta el teléfono. ___ salido ya a hacer los recados.",
-    "en": "He's not answering the phone. He must have already gone out to run errands.",
+    "q": "Son las dos y Pablo todavía no ha llegado. ___ perdido en el metro.",
+    "en": "It's two o'clock and Pablo still hasn't arrived. He must have gotten lost on the metro.",
     "options": [
-      "Habrá",
-      "Hubiera",
-      "Ha",
-      "Había"
+      "Se habrá perdido",
+      "Se perdería",
+      "Se hubiera perdido",
+      "Se perdió"
     ],
     "correct": 0,
-    "explanation": "The Futuro Compuesto (habrá + participio) is used to express probability or deduction about a past event from a present perspective. It's the Spanish equivalent of 'must have done something' and signals the speaker is making a logical inference."
+    "explanation": "The Futuro Compuesto (habrá + participio) can express probability or deduction about something that likely happened in the past, equivalent to 'must have' in English. This is distinct from its use to describe an action completed before a future point."
   }
 ];
 const letters = ["A","B","C","D"];
